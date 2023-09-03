@@ -10,11 +10,7 @@ class Solution {
 		else
 			wolf++;
         answer = Math.max(answer, sheep);
-		if (sheep == wolf || list.isEmpty()) {
-			
-			return;
-		}
-
+		if (sheep == wolf || list.isEmpty()) return;
 		ArrayList<Integer> list2 = new ArrayList<Integer>();
 
 		for (int i = 0; i < list.size(); i++) {
