@@ -42,16 +42,20 @@ class Solution {
 				int ny = p.y + dy[i];
 				// 다음 칸이 0 인 경우
 				if (nx >= 0 && nx < m && ny >= 0 && ny < n && cityMap[nx][ny] == 0) {
-					// 처음 방문인 경우 pq 에 넣어주고 값 저장.
+					// 처음 방문인 경우 pq 에 넣어주기
 					if (Count[nx][ny] == 0)
 						pq.add(new point(nx, ny, nx + ny));
+                    // 카운트 배열 값 갱신
 					Count[nx][ny] += Count[p.x][p.y];
 					Count[nx][ny] %= MOD;
-				} else if (nx >= 0 && nx < m && ny >= 0 && ny < n && cityMap[nx][ny] == 2) {
+				} // 다음 칸의 값이 2인 경우  
+                else if (nx >= 0 && nx < m && ny >= 0 && ny < n && cityMap[nx][ny] == 2) {
+                    // map을 벗어나지 않고 2가 나오면 계속 진행방향으로 이동시킴
 					while (nx >= 0 && nx < m && ny >= 0 && ny < n && cityMap[nx][ny] == 2) {
 						nx += dx[i];
 						ny += dy[i];
 					}
+                    // 멈춘 지점이 배열을 벗어나지 않았고 map의 값이 0이면 위와 같은 로직 수행.
 					if (nx >= 0 && nx < m && ny >= 0 && ny < n && cityMap[nx][ny] == 0) {
 						if (Count[nx][ny] == 0)
 							pq.add(new point(nx, ny, nx + ny));
@@ -61,6 +65,7 @@ class Solution {
 				}
 			}
 		}
+        
 		return (int)Count[m - 1][n - 1];
     }
 }
